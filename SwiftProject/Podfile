@@ -1,0 +1,101 @@
+def public_pods
+    source 'https://github.com/CocoaPods/Specs.git' # 公有源
+    
+end
+
+def njspec_pods
+    # 发布
+    release_remote_pods
+    
+    # 开发
+    develop_local_pods
+end
+
+def develop_local_pods
+    source 'https://github.com/NJHu/NJSpecs.git' # NJ 私有源
+    
+    #pod 'NJKit', :path => '../../NJKit'
+    
+    #pod 'NJDYPlayer', :path => '../../NJDYPlayer/'
+    
+    #pod 'DYLiveRoom', :path => '../../DYLiveRoom/'
+    
+    #pod 'NJNowShowPlay', :path => '../../NJNowShowPlay/'
+    
+    #pod 'NJSisPlayPage', :path => '../../NJSisPlayPage/'
+    
+    #pod 'NJFAQ', :path => '../../NJFAQ/'
+    #pod 'NJMediator_NJFAQ', :path => '../../NJMediator_NJFAQ/'
+    
+end
+
+def release_remote_pods
+    
+    source 'https://github.com/NJHu/NJSpecs.git' # NJ 私有源
+    # 基础组件
+    pod 'NJKit'
+    # 中间件
+    pod 'NJMediator', :source => 'https://github.com/NJHu/NJSpecs.git'
+    # IJK
+    #pod 'NJIJKPlayer', :path => '../../NJIJKPlayer/'
+    #pod 'NJDYPlayer'
+    
+    # 个人偏好模块
+    pod 'DYTrends'
+    pod 'NJMediator_DYTrends'
+    
+    # 直播列表
+    pod 'DYLiveShow'
+    pod 'NJMediator_DYLiveShow'
+    # 直播间
+    #pod 'DYLiveRoom'
+    
+    # NowShow组件
+    pod 'NJNowShow'
+    pod 'NJMediator_NJNowShow'
+    # NowShow直播间
+    #pod 'NJNowShowPlay'
+    
+    # 视频列表
+    pod 'NJSisVideoList'
+    pod 'NJMediator_NJSisVideoList'
+    # 视频播放页面
+    #pod 'NJSisPlayPage'
+    
+    # FAQ
+    pod 'NJFAQ'
+    pod 'NJMediator_NJFAQ'
+end
+
+platform :ios, '10.3'
+
+use_frameworks!
+
+target 'NJDouYu' do
+    
+    inhibit_all_warnings!
+    
+    njspec_pods
+    
+    public_pods
+    
+    target 'NJDouYuTests' do
+        inherit! :search_paths
+        
+    end
+    
+    target 'NJDouYuUITests' do
+        inherit! :search_paths
+        
+    end
+    
+end
+
+
+# 参考
+#pod 'xxx', :git => 'git@xx.com:xx-ios/xx.git', :commit => '1dsafas8769823t1876378'
+#pod 'xx', '2.8.8' , :configuration => 'Debug'
+#pod 'xx', '2.8.8', :configuration => 'Release'
+#pod 'xx','0.1.2'
+#pod 'DYTrends', :git => 'https://github.com/njhu/DYTrends.git', :branch => 'master'
+#pod 'NJKit', :git => 'https://github.com/njhu/NJKit.git'
